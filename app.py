@@ -6,6 +6,11 @@ import bleach
 app = Flask(__name__)
 auth = HTTPBasicAuth()
 
+#Health check route (add this before your existing routes or anywhere after `app = Flask(__name__)`)
+@app.route('/healthz')
+def health_check():
+    return "OK", 200
+
 # Define valid users
 users = {
     "admin": generate_password_hash("2301864@SIT.singaporetech.edu.sg")
